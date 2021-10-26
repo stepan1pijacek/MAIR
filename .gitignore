@@ -1,3 +1,6 @@
+*.vscode
+
+#LaTex gitignore list
 *.aux
 *.glo
 *.idx
@@ -21,3 +24,9 @@
 *.mtc1
 *.out
 *.synctex.gz
+*.fdb_latexmk
+*.dvi
+*.pdf
+*.toa
+*.lol
+*.fls
