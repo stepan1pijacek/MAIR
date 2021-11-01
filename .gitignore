@@ -1,4 +1,6 @@
 *.vscode
+*.png
+*.xml
 
 #LaTex gitignore list
 *.aux
