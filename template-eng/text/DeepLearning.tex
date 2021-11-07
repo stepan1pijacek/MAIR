@@ -1,23 +1,17 @@
 \chapter{Deep learning} 
 \section{Introduction}
-    Deep learning is a type of Machine learning(ML) that has a goal to imitate the human approach to learning
+    Deep learning is a type of Machine learning, further more will be referred to as ML, that has a goal to imitate the human approach to learning
     certain tasks \cite{Deep learning}. 
 
     At its core, deep learning is a way to automate predictive analytics on certain data sets, in our case X-Ray images of lungs.
     This automation of predictive analytics is base for the main difference between traditional AI and deep learning, where AI algorithm 
     is linear in its nature, and deep learning algorithms are using the method of stacking layers upon each other, each layer has an increasing 
-    complexity and abstraction. By this hierarchical approach, we are able to create abstract layers based on the knowledge from the previous layer.
-    %A prime example of this hierarchy is Convolutional Neural Network (CNN), which uses multiple different layers to deliver the desired output. 
-    %\begin{figure} 
-        %\centering
-        %\includegraphics[width=.75\textwidth]{pict/CNN_Architecture.jpg}
-        %\caption{basic CNN architecture}
-    %\end{figure}
+    complexity and abstraction. By this hierarchical approach, we are able to create abstract layers based on the knowledge from the previous layer. 
 
 \section{Capsule Neural Network}
     \subsection{Description}
         Capsule Neural Network (Caps Net) represents the latest breakthrough in the field of neural networks architecture. 
-        This new architecture is able to achieve better results on Modified National Institute of Standards and Technology database than conventional CNN. 
+        This new architecture is able to achieve better results on Modified National Institute of Standards and Technology,  further more will be referred to as MNIST, database than conventional CNN. 
         Error results on this dataset were set to be 0.39\% 
         until Caps Net was introduced which achieved a score of 0.25\% without any data augmentation \cite{Capsule Neural Network performance on complex data}. 
         To achieve such performance Caps Net uses  concept of capsules as proposed by Hinton \cite{Dynamic routing between capsules}. By this method each
@@ -29,15 +23,53 @@
         The second issue is lack of rotational invariance causing the network to assign an incorrect label to the object increasing false negative cases. 
 
         Earlier in this section, we have stated the reasons that brought to life Caps Net architecture. That being said, let's turn our attention to the history of Caps Net. 
-        The first predecessor of Caps Net was proposed by Geoffrey Hinton in 2000. In the paper named Learning to Parse Images \cite{Learning To Parse Images}, in this paper, Hinton described a new imaging system that would use a combination of segmentation and recognition. 
+        The first predecessor of Caps Net was proposed by Geoffrey Hinton in 2000. In the document named Learning to Parse Images \cite{Learning To Parse Images}, 
+        Hinton described a new imaging system that would use a combination of segmentation and recognition. 
         This combination would then be put into a single interface process using the parse tree. 
-        In the year 2011, Hinton published a second paper expanding on this very basic idea of the parse tree \cite{Transforming Auto-Encoders}. 
-        In this paper, he introduced the concept of the capsules to CNN architecture. 
+        In the year 2011, Hinton published a second document expanding on this very basic idea of the parse tree \cite{Transforming Auto-Encoders}. 
+        In this document, he introduced the concept of the capsules to CNN architecture. 
         The basic idea is that we add these capsule structures to CNN and use the output from several of those capsules to form a more stable representation of higher capsules. 
-        This will create an output vector that can be further processed.  After this paper, Hinton and his team published a third paper on the topic of Caps Net \cite{Dynamic routing between capsules}. In this paper, Hinton and his team proposed the utilization of dynamic routing between capsules. 
-        As stated in the paper, there are many ways to implement capsule architecture, but not all of them are as straightforward as proposed by Hinton. 
+        This will create an output vector that can be further processed.  After this document, Hinton and his team published a third document on the topic of Caps Net \cite{Dynamic routing between capsules}.
+        In this document, Hinton and his team proposed the utilization of dynamic routing between capsules. 
+        As stated in the document, there are many ways to implement capsule architecture, but not all of them are as straightforward as proposed by Hinton. 
         This approach is further supported by the utilization of dynamic routing. 
-    \subsection{Architecture}\
+    \subsection{Architecture}
+        As an example of Caps Net architecture, I am going to use the basic architecture proposed in the Dynamic routing between capsules \cite{Dynamic routing between capsules}. 
+
+        The Caps Net can be divided into two main parts, encoder, and decoder. Each utilizes different layers and has a different and important role. 
+        The encoder can be found within the first three layers of the architecture. 
+        The decoder then on the last three layers in the architecture.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=.75\textwidth]{pict/CapsNet.png}
+            \caption{basic Caps Net architecture \cite{Dynamic routing between capsules}}
+            \label{fig:CapsNet architecture}
+        \end{figure}
+        \subsubsection{Encoder}
+            In this example of Caps Net architecture, the encoder takes an MNIST digit image which has 28 by 28
+            size and learns to encode it into a 16-dimensional vector of instantiation parameters. 
+
+            The network in this stage is 10-dimensional vectors that have the length of the digit capsule outputs.
+            \newpage
+            \subsubsection{Layer 1. Convolution layer}
+            The convolution layer is used to detect basic features in the 2D images. 
+            This layer takes 28$\times$28 images as an input and turns them into 20$\times$20$\times$256 tensor output. 
+
+            In the Caps Net architecture the convolution layer has 256 kernels which each has a size of 9$\times$9$\times$1
+            and one stride. This can be seen in the image of the Caps Net architecture\ref{fig:CapsNet architecture}. 
+            Where the image is divided into 9$\times$9$\times$1 sections, which then are individually scanned for basic features.
+
+            This section is then followed by the Rectified Linear Unit, further more will be referred to as ReLu \cite{A gentle introduction to the ReLu}. 
+            That is a linear activation function. 
+            This function does a simple calculation if the input is less than zero, 
+            the entire input is then returned as zero. And vise versa, where if the input is greater than zero then input is returned.
+            We can also simply define this function mathematically using max function:
+                    \begin{equation}
+                        \texttt{ReLu}(x) = max(0, x)
+                    \end{equation}
+            This behavior combined with higher sensitivity to the sum input and not being easily saturated makes it a great activation function for Deep learning.
+            \subsubsection{Layer 2. Primary capsule layer}
+        \subsubsection{Decoder}
     \subsection{Benefits and downsides of Caps Net over CNN}
     \subsection{Real world application of Capsulated Neural Network}
 
